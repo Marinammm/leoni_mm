@@ -1,0 +1,31 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "leoni-moreira",
+          "appId": "1:714880210172:android:af00f265945f058186b379",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "leoni-moreira",
+          "configurations": {
+            "android": "1:714880210172:android:af00f265945f058186b379",
+            "ios": "1:714880210172:ios:ad16a4d39bc0c23186b379",
+            "web": "1:714880210172:web:2cd98113c395619a86b379"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

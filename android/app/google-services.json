@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "714880210172",
+    "project_id": "leoni-moreira",
+    "storage_bucket": "leoni-moreira.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714880210172:android:af00f265945f058186b379",
+        "android_client_info": {
+          "package_name": "LeoNino.com.leoni_mm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn0FF2-17hxnvDTGaQscru2su-u9gGmkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
