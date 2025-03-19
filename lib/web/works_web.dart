@@ -14,6 +14,9 @@ class WorksWeb extends StatefulWidget {
 class _WorksWebState extends State<WorksWeb> {
   @override
   Widget build(BuildContext context) {
+    // Determine if the device is a web device based on its width
+    bool isWeb = MediaQuery.of(context).size.width > 800;
+
     var deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -31,7 +34,16 @@ class _WorksWebState extends State<WorksWeb> {
                 filterQuality: FilterQuality.high,
               ),
             ),
-            title: const TabsWebList(),
+              title: Container(
+                padding:
+                EdgeInsets.symmetric(horizontal: isWeb ? 7.0 : 4.0),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/');
+                  },
+                  icon: Icon(Icons.arrow_back)
+                ),
+              ),
           )
         ];
       },

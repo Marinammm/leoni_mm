@@ -72,7 +72,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           SizedBox(
                             width: 10.0,
                           ),
-                          Sans('leonimm@gmail.com', 15.0),
+                          Sans('leoninomm@gmail.com', 15.0),
                         ],
                       ),
                       Row(
