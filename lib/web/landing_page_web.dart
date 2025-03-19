@@ -15,17 +15,6 @@ class LandingPageWeb extends StatefulWidget {
 
 class _LandingPageWebState extends State<LandingPageWeb> {
   @override
-  void initState() {
-    var sectionToScroll = widget.section ?? homeKey;
-    Scrollable.ensureVisible(
-      sectionToScroll.currentContext!,
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.easeOut
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;

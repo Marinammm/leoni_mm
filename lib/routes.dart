@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:leoni_mm/common/components/tabs.dart";
 import "package:leoni_mm/mobile/landing_page_mobile.dart";
 import "package:leoni_mm/mobile/works_mobile.dart";
 import "package:leoni_mm/web/landing_page_web.dart";
@@ -15,8 +14,7 @@ class Routes {
           builder: (_) => LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth > 800) {
-                final argsSection = settings.arguments as GlobalKey;
-                return LandingPageWeb(section: argsSection,);
+                return LandingPageWeb();
               } else {
                 return LandingPageMobile();
               }
@@ -47,7 +45,7 @@ class Routes {
           builder: (_) => LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth > 800) {
-                return LandingPageWeb(section: homeKey,);
+                return LandingPageWeb();
               } else {
                 return LandingPageMobile();
               }

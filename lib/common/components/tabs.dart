@@ -27,14 +27,15 @@ class _TabsWebState extends State<TabsWeb> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(widget.route, arguments: widget.navigationKey ?? homeKey);
-        // if (widget.navigationKey != null) {
-        //   Scrollable.ensureVisible(
-        //       widget.navigationKey!.currentContext!,
-        //       duration: const Duration(milliseconds: 800),
-        //       curve: Curves.easeOut
-        //   );
-        // }
+        if (widget.navigationKey != null) {
+          Scrollable.ensureVisible(
+              widget.navigationKey!.currentContext!,
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeOut
+          );
+        } else {
+          Navigator.of(context).pushNamed(widget.route);
+        }
       },
       child: MouseRegion(
         onEnter: (_) {
@@ -80,8 +81,6 @@ class TabsWebList extends StatelessWidget {
       TabsWeb(title: 'Home', route: '/', navigationKey: homeKey,),
       Spacer(),
       TabsWeb(title: 'Works', route: '/works',),
-      Spacer(),
-      TabsWeb(title: 'Blog', route: '/blog',),
       Spacer(),
       TabsWeb(title: 'About', route: '/', navigationKey: aboutKey,),
       Spacer(),
