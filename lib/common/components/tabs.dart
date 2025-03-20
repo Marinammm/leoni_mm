@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:leoni_mm/common/components/language.dart';
 
 final homeKey = GlobalKey();
 final aboutKey = GlobalKey();
@@ -86,6 +87,8 @@ class TabsWebList extends StatelessWidget {
       Spacer(),
       TabsWeb(title: 'Contact', route: '/', navigationKey: contactKey,),
       Spacer(),
+      LanguageButton(),
+      SizedBox(width: 40.0,),
     ]);
   }
 }
