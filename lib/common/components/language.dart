@@ -28,6 +28,14 @@ class LanguageText {
       return 'Frontend developer';
     }
   }
+
+  static getTabsTitle (lang) {
+    if (lang) {
+      return ['Home', 'Sobre', 'Projetos', 'Contato'];
+    } else {
+      return ['Home', 'About', 'Works', 'Contact'];
+    }
+  }
 }
 
 class LanguageButton extends StatelessWidget {
@@ -35,36 +43,34 @@ class LanguageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LanguageViewModel>(create: (_) => LanguageViewModel(),
-      child: Consumer<LanguageViewModel>(builder: (context, model, child) =>
-        Row(
-          children: [
-            Image.asset(
-              'assets/eua.png',
-              height: 15.0,
-            ),
-            SizedBox(
-              height: 20.0,
-              width: 35.0,
-              child: FittedBox(
-                fit: BoxFit.fill,
-                child: Switch(
-                  value: model.language,
-                  activeColor: Colors.green,
-                  inactiveThumbColor: Colors.red,
-                  inactiveTrackColor: Colors.redAccent[100],
-                  onChanged: (bool value) {
-                    model.switchLanguage();
-                  }),
-              ),
-            ),
-            Image.asset(
-              'assets/brasil.png',
-              height: 15.0,
-            ),
-          ],
-        )
-      )
+    LanguageViewModel languageViewModel = Provider.of<LanguageViewModel>(context);
+
+    return Row(
+      children: [
+        Image.asset(
+          'assets/eua.png',
+          height: 15.0,
+        ),
+        SizedBox(
+          height: 20.0,
+          width: 35.0,
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: Switch(
+              value: languageViewModel.language,
+              activeColor: Colors.green,
+              inactiveThumbColor: Colors.red,
+              inactiveTrackColor: Colors.redAccent[100],
+              onChanged: (bool value) {
+                languageViewModel.switchLanguage();
+              }),
+          ),
+        ),
+        Image.asset(
+          'assets/brasil.png',
+          height: 15.0,
+        ),
+      ],
     );
   }
 }

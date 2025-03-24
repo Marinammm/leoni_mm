@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leoni_mm/common/components/language.dart';
 
@@ -75,17 +76,20 @@ class TabsWebList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LanguageViewModel languageViewModel = Provider.of<LanguageViewModel>(context);
+    var tabNames = LanguageText.getTabsTitle(languageViewModel.language);
+
     return Row(children: [
       Spacer(
         flex: 3,
       ),
-      TabsWeb(title: 'Home', route: '/', navigationKey: homeKey,),
+      TabsWeb(title: tabNames[0], route: '/', navigationKey: homeKey,),
       Spacer(),
-      TabsWeb(title: 'Works', route: '/works',),
+      TabsWeb(title: tabNames[1], route: '/', navigationKey: aboutKey,),
       Spacer(),
-      TabsWeb(title: 'About', route: '/', navigationKey: aboutKey,),
+      TabsWeb(title: tabNames[2], route: '/works',),
       Spacer(),
-      TabsWeb(title: 'Contact', route: '/', navigationKey: contactKey,),
+      TabsWeb(title: tabNames[3], route: '/', navigationKey: contactKey,),
       Spacer(),
       LanguageButton(),
       SizedBox(width: 40.0,),
