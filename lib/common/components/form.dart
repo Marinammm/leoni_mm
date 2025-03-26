@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import '../api/firestore.dart';
+import 'language.dart';
 import 'texts.dart';
 
 final Logger logger = Logger();
@@ -16,7 +18,7 @@ final formKey = GlobalKey<FormState>();
 class TextForm extends StatelessWidget {
   final String heading;
   final double containerWidth;
-  final String hintText;
+  final String? hintText;
   final int? maxLines;
   final TextEditingController controller;
   final String? Function(String?)? validator;
@@ -25,7 +27,7 @@ class TextForm extends StatelessWidget {
       {super.key,
         required this.heading,
         required this.containerWidth,
-        required this.hintText,
+        this.hintText,
         this.maxLines,
         required this.controller,
         this.validator
@@ -88,12 +90,16 @@ class _ContactFormWebState extends State<ContactFormWeb> {
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
+    LanguageViewModel languageViewModel = Provider.of<LanguageViewModel>(context);
+
+    var texts = LanguageText.getContactText(languageViewModel.language);
+
     return Form(
       key: formKey,
       child: Column(
         children: [
           const SizedBox(height: 30.0),
-          const SansBold("Contact me", 40.0),
+          SansBold(LanguageText.getContactTitle(languageViewModel.language), 40.0),
           const SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -101,26 +107,24 @@ class _ContactFormWebState extends State<ContactFormWeb> {
               Column(
                 children: [
                   TextForm(
-                    heading: "First Name",
+                    heading: texts['first']['name'],
                     containerWidth: 350.0,
-                    hintText: "Please type first name",
                     controller: _firstNameController,
                     validator: (text) {
                       if (text!.isEmpty) {
-                        return "First name is required";
+                        return texts['first']['error'];
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: 15.0),
                   TextForm(
-                    heading: "Email",
+                    heading: texts['email']['name'],
                     containerWidth: 350.0,
-                    hintText: "Please type email address",
                     controller: _emailController,
                     validator: (text) {
                       if (text!.isEmpty) {
-                        return "Email is required";
+                        return texts['email']['error'];
                       }
                       return null;
                     },
@@ -131,16 +135,14 @@ class _ContactFormWebState extends State<ContactFormWeb> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextForm(
-                    heading: "Last Name",
+                    heading: texts['last']['name'],
                     containerWidth: 350.0,
-                    hintText: "Please type last name",
                     controller: _lastNameController,
                   ),
                   const SizedBox(height: 15.0),
                   TextForm(
-                    heading: "Phone number",
+                    heading: texts['phone']['name'],
                     containerWidth: 350.0,
-                    hintText: "Please type phone number",
                     controller: _phoneController,
                   ),
                 ],
@@ -149,14 +151,14 @@ class _ContactFormWebState extends State<ContactFormWeb> {
           ),
           const SizedBox(height: 20.0),
           TextForm(
-            heading: "Message",
+            heading: texts['message']['name'],
             containerWidth: widthDevice / 1.5,
-            hintText: "Please type your message",
+            hintText: texts['message']['hint'],
             maxLines: 10,
             controller: _messageController,
             validator: (text) {
               if (text!.isEmpty) {
-                return "Message is required";
+                return texts['message']['error'];
               }
               return null;
             },
@@ -175,9 +177,15 @@ class _ContactFormWebState extends State<ContactFormWeb> {
                   _messageController.text,
                 )) {
                   formKey.currentState!.reset();
-                  dialogError(context, "Message sent successfully");
+                  dialogError(
+                    context,
+                    LanguageText.getDialogSuccessMessage(languageViewModel.language)
+                  );
                 } else {
-                  dialogError(context, "Message failed to send");
+                  dialogError(
+                    context,
+                    LanguageText.getDialogErrorMessage(languageViewModel.language)
+                  );
                 }
               }
             },

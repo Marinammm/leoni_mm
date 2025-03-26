@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../common/components/animations.dart';
 import '../common/components/drawers.dart';
+import '../common/components/language.dart';
 import '../common/components/tabs.dart';
 import '../common/components/texts.dart';
 
@@ -18,6 +20,8 @@ class _WorksWebState extends State<WorksWeb> {
     bool isWeb = MediaQuery.of(context).size.width > 800;
 
     var deviceWidth = MediaQuery.of(context).size.width;
+
+    LanguageViewModel languageViewModel = Provider.of<LanguageViewModel>(context);
 
     return Scaffold(
       drawer: DrawersWeb(),
@@ -52,7 +56,7 @@ class _WorksWebState extends State<WorksWeb> {
             Column(
               children: [
                 SizedBox(height: 30.0,),
-                SansBold('Works', 40.0),
+                SansBold(LanguageText.getWorksTitle(languageViewModel.language), 40.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
