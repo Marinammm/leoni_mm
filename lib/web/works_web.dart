@@ -38,16 +38,22 @@ class _WorksWebState extends State<WorksWeb> {
                 filterQuality: FilterQuality.high,
               ),
             ),
-              title: Container(
-                padding:
-                EdgeInsets.symmetric(horizontal: isWeb ? 7.0 : 4.0),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/');
-                  },
-                  icon: Icon(Icons.arrow_back)
-                ),
+            title: Container(
+              padding: EdgeInsets.symmetric(horizontal: isWeb ? 7.0 : 4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/');
+                    },
+                    icon: Icon(Icons.arrow_back)
+                  ),
+                  SizedBox( width: deviceWidth - 400.00,),
+                  LanguageButton(),
+                ],
               ),
+            ),
           )
         ];
       },
